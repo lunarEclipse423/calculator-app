@@ -1,0 +1,38 @@
+.calculator {
+    width: 322px;
+    height: 652px;
+    background: $color-background;
+    border-radius: 30px;
+}
+
+.up-area {
+    min-height: 266px;
+}
+
+.functional-area {
+    min-height: 386px;
+    padding: 20px 26px 38px;
+    background: $color-background-additional;
+    border-radius: 25px 25px 30px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.key {
+    width: 54px;
+    height: 54px;
+    padding: .5rem .5rem;
+    background: $color-key;
+    border-radius: 30px;
+    color: $color-primary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

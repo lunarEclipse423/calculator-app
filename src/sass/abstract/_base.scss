@@ -1,0 +1,13 @@
+html {
+    font-size: 10px;
+}
+
+body {
+    @include font(1.8rem, 2.6rem);
+    font-family: 'Poppins', Verdana, sans-serif;
+}
+
+kbd {
+    @include font(1.8rem, 2.6rem);
+    font-family: 'Poppins', Verdana, sans-serif;
+}
