@@ -16,8 +16,3 @@ h1 {
     @include font(2.4rem, 3.0rem);
     color: $color-title;
 }
-
-kbd {
-    @include font(1.8rem, 2.6rem);
-    font-family: 'Poppins', Verdana, sans-serif;
-}
