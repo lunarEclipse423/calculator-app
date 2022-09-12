@@ -1,4 +1,8 @@
-.calculator {
+.calculator__title {
+    text-align: center;
+}
+
+.calculator-wrapper {
     width: 322px;
     height: 652px;
     margin: 0 auto;
@@ -6,7 +10,7 @@
     border-radius: 30px;
 }
 
-.calculation-area {
+.display-area {
     min-height: 266px;
     padding: 52px 26px 18px;
     display: flex;
@@ -19,7 +23,7 @@
     justify-content: center;
 }
 
-.calculation-screen {
+.calculator-screen {
     min-height: 66px;
     display: flex;
     flex-direction: column;
@@ -64,7 +68,12 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    transition: all .15s;
     &:hover {
         background: $color-key-hover;
     }
+}
+
+.selected {
+    background: $color-key-hover;
 }

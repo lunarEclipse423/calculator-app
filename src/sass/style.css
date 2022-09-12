@@ -401,19 +401,31 @@ ul {
   box-sizing: border-box;
 }
 
+h1, body {
+  font-family: "Poppins", Verdana, sans-serif;
+}
+
 html {
   font-size: 10px;
 }
 
 body {
   padding: 0;
-  background: linear-gradient(to right, #00AAFF, #00FF6C);
+  background-image: url("../img/background.jpg");
+  background-size: cover;
   font-style: normal;
   font-weight: 600;
   font-size: 1.8rem;
   line-height: 2.6rem;
-  font-family: "Poppins", Verdana, sans-serif;
   color: #FBFBFB;
+}
+
+h1 {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 2.4rem;
+  line-height: 3rem;
+  color: #373737;
 }
 
 kbd {
@@ -424,7 +436,11 @@ kbd {
   font-family: "Poppins", Verdana, sans-serif;
 }
 
-.calculator {
+.calculator__title {
+  text-align: center;
+}
+
+.calculator-wrapper {
   width: 322px;
   height: 652px;
   margin: 0 auto;
@@ -432,7 +448,7 @@ kbd {
   border-radius: 30px;
 }
 
-.calculation-area {
+.display-area {
   min-height: 266px;
   padding: 52px 26px 18px;
   display: flex;
@@ -445,7 +461,7 @@ kbd {
   justify-content: center;
 }
 
-.calculation-screen {
+.calculator-screen {
   min-height: 66px;
   display: flex;
   flex-direction: column;
@@ -496,16 +512,14 @@ kbd {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.07s ease;
+  transition: all 0.15s;
 }
 .key:hover {
   background: rgba(5, 5, 5, 0.4);
 }
 
-.playing {
-  transform: scale(1.1);
-  border-color: #66ff33;
-  box-shadow: 0 0 1rem #66ff33;
+.selected {
+  background: rgba(5, 5, 5, 0.4);
 }
 
 /*# sourceMappingURL=style.css.map */

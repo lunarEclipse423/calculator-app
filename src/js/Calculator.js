@@ -17,15 +17,19 @@ export default class Calculator {
         this.#operation = undefined;
     }
 
-    delete() {
+    cancelEntry() {
         this.#currentNum = this.#currentNum.toString().slice(0, -1);
     }
 
-    addSymbol(num) {
-        if (num === '.' && this.#currentNum.includes('.')) {
+    addSymbol(symbol) {
+        if (symbol === '.' && this.#currentNum.includes('.')) {
             return;
         }
-        this.#currentNum = this.#currentNum.toString() + num.toString();
+        if (symbol === '%' && this.#currentNum === '') {
+            console.log('im here!')
+            return;
+        }
+        this.#currentNum = this.#currentNum.toString() + symbol.toString();
     }
 
     reverseSign() {
@@ -54,8 +58,33 @@ export default class Calculator {
         let previous = parseFloat(this.#previousNum);
         let current = parseFloat(this.#currentNum);
 
-        if (isNaN(previous) || isNaN(current)) {
+        if (isNaN(previous)) {
+            if (isNaN(current)) {
+                return;
+            }
+
+            if (this.#currentNum.toString().includes('%')) {
+                const percentageCount = this.#currentNum.replace(/[^%]/g, '').length;
+                for (let i = 0; i < percentageCount; i++) {
+                    current = current / 100;
+                }
+                this.#currentNum = current;
+            }
             return;
+        }
+
+        if (this.#previousNum.toString().includes('%')) {
+            const percentageCount = this.#previousNum.replace(/[^%]/g, '').length;
+            for (let i = 0; i < percentageCount; i++) {
+                previous = previous / 100;
+            }
+        }
+
+        let currentPercentageCount = 0;
+        if (this.#currentNum.toString().includes('%')) {
+            currentPercentageCount = this.#currentNum.replace(/[^%]/g, '').length;
+            current = previous * current / 100;
+            currentPercentageCount = currentPercentageCount - 1;
         }
 
         switch(this.#operation) {
@@ -74,6 +103,13 @@ export default class Calculator {
             default:
                 return;
         }
+
+        if (currentPercentageCount !== 0) {
+            for (let i = 0; i < currentPercentageCount; i++) {
+                result = result / 100;
+            }
+        }
+
         this.#operation = undefined;
         this.#currentNum = result;
         this.#previousNum = '';
@@ -83,27 +119,32 @@ export default class Calculator {
         const stringNumber = num.toString();
         const integerPart = parseFloat(stringNumber.split('.')[0]);
         const decimalPart = stringNumber.split('.')[1];
-        let integerPartDisplay;
-        if (isNaN(integerPart)) {
-            integerPartDisplay = '';
-        } else {
+        let integerPartDisplay = '';
+        
+        if (!isNaN(integerPart)) {
             integerPartDisplay = integerPart.toLocaleString('en', {
                 maximumFractionDigits: 0
             });
         }
 
-        if (decimalPart != null) {
-            return `${integerPartDisplay}.${decimalPart}`;
-        } else {
-            return integerPartDisplay;
-        }
+        return decimalPart != null ? `${integerPartDisplay}.${decimalPart}` : integerPartDisplay;
     }
 
-    updateDisplay() {
-        this.#currentNumText.innerText = this.displayNumber(this.#currentNum);
+    updateScreen() {
+        if (this.#currentNum.toString().includes('%')) {
+            this.#currentNumText.innerText = this.displayNumber(this.#currentNum).padEnd(this.#currentNum.length, '%');
+        } else {
+            this.#currentNumText.innerText = this.displayNumber(this.#currentNum);
+        }
+        
         if (this.#operation != null) {
-            this.#previousNumText.innerText = 
-            `${this.displayNumber(this.#previousNum)} ${this.#operation}`;
+            if (this.#previousNum.toString().includes('%')) {
+                this.#previousNumText.innerText = 
+                    `${this.displayNumber(this.#previousNum).padEnd(this.#previousNum.length, '%')} ${this.#operation}`;
+            } else {
+                this.#previousNumText.innerText = 
+                    `${this.displayNumber(this.#previousNum)} ${this.#operation}`;
+            }
         } else {
             this.#previousNumText.innerText = '';
         }
