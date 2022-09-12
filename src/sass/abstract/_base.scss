@@ -3,8 +3,11 @@ html {
 }
 
 body {
+    padding: 0;
+    background: linear-gradient(to right, #00AAFF, #00FF6C);
     @include font(1.8rem, 2.6rem);
     font-family: 'Poppins', Verdana, sans-serif;
+    color: $color-primary;
 }
 
 kbd {

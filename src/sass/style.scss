@@ -2,9 +2,9 @@
 @import "base/normalize";
 
 // Abstract
+@import "abstract/constants";
 @import "abstract/mixins";
 @import "abstract/base";
-@import "abstract/constants";
 
 // Coponents
 @import "components/calculator";
