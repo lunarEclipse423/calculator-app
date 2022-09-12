@@ -4,10 +4,17 @@ html {
 
 body {
     padding: 0;
-    background: linear-gradient(to right, #00AAFF, #00FF6C);
+    background-image: url('../img/background.jpg');
+    background-size: cover;
+    @extend %font-primary;
     @include font(1.8rem, 2.6rem);
-    font-family: 'Poppins', Verdana, sans-serif;
     color: $color-primary;
+}
+
+h1 {
+    @extend %font-primary;
+    @include font(2.4rem, 3.0rem);
+    color: $color-title;
 }
 
 kbd {
