@@ -31,7 +31,7 @@ export default class Calculator {
         if (this.#currentNum.length === 15) {
             return;
         }
-        
+
         this.#currentNum = this.#currentNum.toString() + symbol.toString();
     }
 
@@ -65,6 +65,10 @@ export default class Calculator {
         let previous = parseFloat(this.#previousNum);
         let current = parseFloat(this.#currentNum);
 
+        if (!isNaN(previous) && isNaN(current)) {
+            return;
+        }
+
         if (isNaN(previous)) {
             if (isNaN(current)) {
                 return;
@@ -78,7 +82,7 @@ export default class Calculator {
                 this.#currentNum = current;
             }
             return;
-        }
+        } 
 
         if (this.#previousNum.toString().includes('%')) {
             const percentageCount = this.#previousNum.replace(/[^%]/g, '').length;
