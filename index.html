@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./src/sass/style.css">
+</head>
+<body>
+    <main>
+        <div class="calculator">
+            <!-- <h1 class="calculator__title">Calculator App! Try this out!</h1> -->
+            <div class="calculator-wrapper">
+                <div class="display-area">
+                    <div class="tools">
+                        <div class="history">history!</div>
+                    </div>
+                    <div class="calculator-screen">
+                        <div class="previous-calculation"></div>
+                        <div class="current-calculation"></div>
+                    </div>
+                </div>
+                <div class="calculator__keys">
+                        <div class="row">
+                            <div class="key AllClear">AC</div>
+                            <div class="key Backspace">CE</div>
+                            <div class="key sign">+/-</div>
+                            <div class="key operation Slash">÷</div>
+                        </div>
+                        <div class="row">
+                            <div class="key number Digit1">1</div>
+                            <div class="key number Digit2">2</div>
+                            <div class="key number Digit3">3</div>
+                            <div class="key operation Mult">×</div>
+                        </div>
+                        <div class="row">
+                            <div class="key number Digit4">4</div>
+                            <div class="key number Digit5">5</div>
+                            <div class="key number Digit6">6</div>
+                            <div class="key operation Minus">-</div>
+                        </div>
+                        <div class="row">
+                            <div class="key number Digit7">7</div>
+                            <div class="key number Digit8">8</div>
+                            <div class="key number Digit9">9</div>
+                            <div class="key operation Plus">+</div>
+                        </div>
+                        <div class="row">
+                            <div class="key number Period">.</div>
+                            <div class="key number Digit0">0</div>
+                            <div class="key percentage">%</div>
+                            <div class="key Equal">=</div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script type="module" src="./src/script.js"></script>
+</body>
+</html>

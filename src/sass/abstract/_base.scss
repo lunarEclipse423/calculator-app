@@ -1,0 +1,18 @@
+html {
+    font-size: 10px;
+}
+
+body {
+    padding: 0;
+    background-image: url('../img/background.jpg');
+    background-size: cover;
+    @extend %font-primary;
+    @include font(2.0rem, 1.2rem, 500);
+    color: $color-primary;
+}
+
+h1 {
+    @extend %font-primary;
+    @include font(2.4rem, 3.0rem);
+    color: $color-title;
+}
