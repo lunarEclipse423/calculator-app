@@ -1,8 +1,14 @@
-$color-primary: #FBFBFB;
-$color-background: linear-gradient(166.34deg, #373737 0%, #252628 22.9%, #000309 100%);
-$color-background-additional: linear-gradient(244.38deg, #42869B 8.14%, #2A7DA1 27.9%, #224E91 56.94%, #00123F 84.11%);
-$color-key: rgba(5, 5, 5, 0.3);
-$color-previous-calc: rgba(251, 251, 251, 0.5);
+$color-primary: #d0d0ce;
+$color-background: linear-gradient(167.27deg, #F7F8FB -5.94%, rgba(247, 248, 251, 0.19) 103.62%);
+$color-key-primary: #505050;
+$color-current-calc: #424242;
+$color-previous-calc: #818181;
 $color-title: #373737;
 
+$color-key-first: #1c1c1c;
+$color-key-background-first: #D4D4D2;
+$color-key-second: #fbfafa;
+$color-key-background-second: #FF9500;
+
 $color-key-hover: rgba(5, 5, 5, 0.4);
+$color-key-shadow: rgba(0, 0, 0, 0.25);

@@ -414,10 +414,10 @@ body {
   background-image: url("../img/background.jpg");
   background-size: cover;
   font-style: normal;
-  font-weight: 600;
-  font-size: 1.8rem;
-  line-height: 2.6rem;
-  color: #FBFBFB;
+  font-weight: 500;
+  font-size: 2rem;
+  line-height: 1.2rem;
+  color: #d0d0ce;
 }
 
 h1 {
@@ -428,29 +428,23 @@ h1 {
   color: #373737;
 }
 
-kbd {
-  font-style: normal;
-  font-weight: 600;
-  font-size: 1.8rem;
-  line-height: 2.6rem;
-  font-family: "Poppins", Verdana, sans-serif;
-}
-
 .calculator__title {
   text-align: center;
 }
 
 .calculator-wrapper {
-  width: 322px;
-  height: 652px;
+  width: 300px;
+  height: 590px;
   margin: 0 auto;
-  background: linear-gradient(166.34deg, #373737 0%, #252628 22.9%, #000309 100%);
+  padding: 0 27px 0;
+  background: linear-gradient(167.27deg, #F7F8FB -5.94%, rgba(247, 248, 251, 0.19) 103.62%);
+  backdrop-filter: blur(102px);
   border-radius: 30px;
 }
 
 .display-area {
-  min-height: 266px;
-  padding: 52px 26px 18px;
+  min-height: 227px;
+  padding: 23px 14px 43px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -473,24 +467,25 @@ kbd {
 
 .previous-calculation {
   font-style: normal;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 1.8rem;
-  line-height: 2.3rem;
-  color: rgba(251, 251, 251, 0.5);
+  line-height: 2rem;
+  color: #818181;
+  text-align: end;
 }
 
 .current-calculation {
   font-style: normal;
-  font-weight: 600;
-  font-size: 3rem;
-  line-height: 3rem;
+  font-weight: 500;
+  font-size: 3.8rem;
+  line-height: 4.2rem;
+  color: #424242;
+  text-align: end;
 }
 
-.functional-area {
-  min-height: 386px;
-  padding: 20px 26px 38px;
-  background: linear-gradient(244.38deg, #42869B 8.14%, #2A7DA1 27.9%, #224E91 56.94%, #00123F 84.11%);
-  border-radius: 25px 25px 30px 30px;
+.calculator__keys {
+  min-height: 368px;
+  padding: 24px 0 38px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -503,10 +498,11 @@ kbd {
 }
 
 .key {
-  width: 54px;
-  height: 54px;
+  width: 48px;
+  height: 48px;
   padding: 0.5rem 0.5rem;
-  background: rgba(5, 5, 5, 0.3);
+  background: #505050;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 30px;
   display: flex;
   align-items: center;
@@ -514,12 +510,45 @@ kbd {
   cursor: pointer;
   transition: all 0.15s;
 }
-.key:hover {
-  background: rgba(5, 5, 5, 0.4);
+.key:hover, .key.selected {
+  background: #d0d0ce;
+  color: #505050;
 }
 
-.selected {
-  background: rgba(5, 5, 5, 0.4);
+.AllClear,
+.Backspace,
+.sign {
+  background: #D4D4D2;
+  color: #1c1c1c;
+}
+.AllClear:hover, .AllClear.selected,
+.Backspace:hover,
+.Backspace.selected,
+.sign:hover,
+.sign.selected {
+  background: #1c1c1c;
+  color: #D4D4D2;
+}
+
+.Slash,
+.Mult,
+.Minus,
+.Plus,
+.Equal {
+  background: #FF9500;
+  color: #fbfafa;
+}
+.Slash:hover, .Slash.selected,
+.Mult:hover,
+.Mult.selected,
+.Minus:hover,
+.Minus.selected,
+.Plus:hover,
+.Plus.selected,
+.Equal:hover,
+.Equal.selected {
+  background: #fbfafa;
+  color: #FF9500;
 }
 
 /*# sourceMappingURL=style.css.map */

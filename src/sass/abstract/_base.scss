@@ -7,7 +7,7 @@ body {
     background-image: url('../img/background.jpg');
     background-size: cover;
     @extend %font-primary;
-    @include font(1.8rem, 2.6rem);
+    @include font(2.0rem, 1.2rem, 500);
     color: $color-primary;
 }
 

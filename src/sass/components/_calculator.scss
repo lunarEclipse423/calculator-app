@@ -3,16 +3,18 @@
 }
 
 .calculator-wrapper {
-    width: 322px;
-    height: 652px;
+    width: 300px;
+    height: 590px;
     margin: 0 auto;
+    padding: 0 27px 0;
     background: $color-background;
+    backdrop-filter: blur(102px);
     border-radius: 30px;
 }
 
 .display-area {
-    min-height: 266px;
-    padding: 52px 26px 18px;
+    min-height: 227px;
+    padding: 23px 14px 43px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -34,19 +36,20 @@
 }
 
 .previous-calculation {
-    @include font(1.8rem, 2.3rem, 500);
+    @include font(1.8rem, 2.0rem, 400);
     color: $color-previous-calc;
+    text-align: end;
 }
 
 .current-calculation {
-    @include font(3.0rem, 3.0rem);
+    @include font(3.8rem, 4.2rem, 500);
+    color: $color-current-calc;
+    text-align: end;
 }
 
-.functional-area {
-    min-height: 386px;
-    padding: 20px 26px 38px;
-    background: $color-background-additional;
-    border-radius: 25px 25px 30px 30px;
+.calculator__keys {
+    min-height: 368px;
+    padding: 24px 0 38px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -59,21 +62,47 @@
 }
 
 .key {
-    width: 54px;
-    height: 54px;
+    width: 48px;
+    height: 48px;
     padding: .5rem .5rem;
-    background: $color-key;
+    background: $color-key-primary;
+    box-shadow: 0px 4px 4px $color-key-shadow;
     border-radius: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all .15s;
-    &:hover {
-        background: $color-key-hover;
+
+    &:hover,
+    &.selected {
+        background: $color-primary;
+        color: $color-key-primary;
     }
 }
 
-.selected {
-    background: $color-key-hover;
+.AllClear,
+.Backspace,
+.sign {
+    background: $color-key-background-first;
+    color: $color-key-first;
+    &:hover, 
+    &.selected {
+        background: $color-key-first;
+        color: $color-key-background-first;
+    }
+}
+
+.Slash,
+.Mult,
+.Minus,
+.Plus,
+.Equal {
+    background: $color-key-background-second;
+    color: $color-key-second;
+    &:hover,
+    &.selected {
+        background: $color-key-second;
+        color: $color-key-background-second;
+    }
 }
