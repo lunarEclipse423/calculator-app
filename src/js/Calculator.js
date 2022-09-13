@@ -26,9 +26,12 @@ export default class Calculator {
             return;
         }
         if (symbol === '%' && this.#currentNum === '') {
-            console.log('im here!')
             return;
         }
+        if (this.#currentNum.length === 15) {
+            return;
+        }
+        
         this.#currentNum = this.#currentNum.toString() + symbol.toString();
     }
 
@@ -41,7 +44,11 @@ export default class Calculator {
     }
 
     selectOperation(operation) {
-        if (this.#currentNum === '') {
+        if (this.#currentNum === '' && this.#previousNum === '') {
+            return;
+        }
+        if (this.#currentNum === '' && this.#previousNum !== '') {
+            this.#operation = operation;
             return;
         }
         if (this.#previousNum !== '') {
@@ -98,13 +105,17 @@ export default class Calculator {
                 result = previous * current;
                 break;
             case '÷':
-                result = previous / current;
+                if (current === 0) {
+                    result = 'Cannot divide by zero';
+                } else {
+                    result = previous / current;
+                }
                 break;
             default:
                 return;
         }
 
-        if (currentPercentageCount !== 0) {
+        if (currentPercentageCount !== 0 && result !== 'Cannot divide by zero') {
             for (let i = 0; i < currentPercentageCount; i++) {
                 result = result / 100;
             }
@@ -133,6 +144,9 @@ export default class Calculator {
     updateScreen() {
         if (this.#currentNum.toString().includes('%')) {
             this.#currentNumText.innerText = this.displayNumber(this.#currentNum).padEnd(this.#currentNum.length, '%');
+        } else if (this.#currentNum === 'Cannot divide by zero') {
+            this.#currentNumText.innerText = this.#currentNum;
+            this.#currentNum = '';
         } else {
             this.#currentNumText.innerText = this.displayNumber(this.#currentNum);
         }
