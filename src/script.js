@@ -5,7 +5,6 @@ const calculator = new Calculator(constants.previousOperandText, constants.curre
 
 window.addEventListener('keydown', e => {
     let key;
-
     if (e.shiftKey && e.code === 'Equal') {
         key = document.querySelector('.key.Plus');
         calculator.addOperation(key.innerText);

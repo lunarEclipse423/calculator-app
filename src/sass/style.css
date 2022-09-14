@@ -410,11 +410,11 @@ ul {
 }
 
 .icon_light-theme {
-  background-image: url(../img/sun.svg);
+  background-image: url(../svg/sun.svg);
 }
 
 .icon_dark-theme {
-  background-image: url(../img/moon.svg);
+  background-image: url(../svg/moon.svg);
 }
 
 h1, body {
