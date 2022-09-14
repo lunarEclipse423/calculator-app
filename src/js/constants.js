@@ -11,7 +11,7 @@ export const percentage = document.querySelector('.percentage');
 export const previousOperandText = document.querySelector('.previous-calculation');
 export const currentOperandText = document.querySelector('.current-calculation');
 
-export const calculatorWrapper = document.querySelector('.calculator-wrapper');
+export const calculatorWrapper = document.querySelector('.calculator');
 export const currentNumber = document.querySelector('.current-calculation');
 export const themeSwitcher = document.querySelector('.theme-switcher');
 export const themeIcon = document.querySelector('.icon_light-theme');

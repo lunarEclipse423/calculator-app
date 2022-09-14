@@ -46,7 +46,7 @@ export default class Calculator {
             return;
         }
 
-        if (symbol === '%' && this.#currentNum === '') {
+        if (symbol === '%' && this.#currentNum.toString() === '') {
             return;
         } else if (symbol !== '%' && this.#currentNum.toString().includes('%')) {
             return;
@@ -142,6 +142,10 @@ export default class Calculator {
     }
 
     equals() {
+        if (this.#stackNumbers.length() === 0) {
+            return;
+        }
+
         if (this.#currentNum !== '') {
             if (this.#currentNum.toString().includes('%')) {
                 this.calculatePercentage();
@@ -149,6 +153,14 @@ export default class Calculator {
                 this.#stackNumbers.push(parseFloat(this.#currentNum));
             }
             this.#outputString = `${this.#outputString} ${this.#currentNum} =`;
+        }
+
+        if (this.#stackNumbers.length() < 2) {
+            this.#currentNum = this.#stackNumbers.pop();
+            this.#stackNumbers.clear();
+            this.#stackOperations.clear();
+            this.#outputString = `${this.#currentNum} =`;
+            return;
         }
 
         while (this.#stackOperations.length() !== 0 && !this.#isDivisionByZero) {
@@ -193,7 +205,10 @@ export default class Calculator {
     }
 
     updateScreen() {
-        if (this.#currentNum.toString().includes('%')) {
+        if (this.#currentNum === undefined) {
+            this.#currentNumText.innerText = '';
+            this.#currentNum = '';
+        } else if (this.#currentNum.toString().includes('%')) {
             this.#currentNumText.innerText = this.displayNumber(this.#currentNum).padEnd(this.#currentNum.length, '%');
         } else if (this.#currentNum === 'Cannot divide by zero') {
             this.#currentNumText.innerText = this.#currentNum;
