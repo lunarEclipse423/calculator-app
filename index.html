@@ -11,13 +11,39 @@
 </head>
 <body>
     <main class="main-content">
-        <div class="calculator">
-            <div class="calculator-wrapper">
+        <div class="instructions">
+            <h1 class="instructions__title">Hello there!</h1>
+            <p>Searching the Internet for so long and we finally met. I've been waiting for you to come, cause every journey has its final day.</p>
+            <h2>This calculator has keyboard support, so here are some shortcuts:</h2>
+            <div class="keyboard-shortcuts">
+                <ul class="shortcuts">
+                    <li class="shortcuts-item"><kbd class="kbd-item">Alt</kbd> + <kbd class="kbd-item">C</kbd></li>
+                    <li class="shortcuts-item"><kbd class="kbd-item">Backspace</kbd></li>
+                    <li class="shortcuts-item"><kbd class="kbd-item">/</kbd></li>
+                    <li class="shortcuts-item"><kbd class="kbd-item">Shift</kbd> + <kbd class="kbd-item">8</kbd></li>
+                    <li class="shortcuts-item"><kbd class="kbd-item">-</kbd></li>
+                    <li class="shortcuts-item"><kbd class="kbd-item">Shift</kbd> + <kbd class="kbd-item">=</kbd></li>
+                    <li class="shortcuts-item"><kbd class="kbd-item">=</kbd></li>
+                    <li class="shortcuts-item"><kbd class="kbd-item">Shift</kbd> + <kbd class="kbd-item">5</kbd></li>
+                    <li class="shortcuts-item"><kbd class="kbd-item">Shift</kbd> + <kbd class="kbd-item">-</kbd></li>
+                </ul>
+                <ul class="comments">
+                    <li class="comments-item">All Clear</li>
+                    <li class="comments-item">Clear Entry</li>
+                    <li class="comments-item">Division</li>
+                    <li class="comments-item">Multiplication</li>
+                    <li class="comments-item">Substraction</li>
+                    <li class="comments-item">Summation</li>
+                    <li class="comments-item">Equal</li>
+                    <li class="comments-item">Percentage</li>
+                    <li class="comments-item">Sign change</li>
+                </ul>
+            </div>
+        </div>
+            <div class="calculator">
                 <div class="display-area">
                     <div class="tools">
-                        <div class="history">
-                            <!-- history! -->
-                        </div>
+                        <div class="history"></div>
                         <div class="theme-switcher">
                             <span class="icon icon_light-theme"></span>
                         </div>
@@ -60,7 +86,6 @@
                         </div>
                 </div>
             </div>
-        </div>
     </main>
     <script type="module" src="./src/script.js"></script>
 </body>
