@@ -434,7 +434,6 @@ h1 {
 
 .calculator-wrapper {
   width: 300px;
-  height: 590px;
   margin: 0 auto;
   padding: 0 27px 0;
   background: linear-gradient(167.27deg, #F7F8FB -5.94%, rgba(247, 248, 251, 0.19) 103.62%);
@@ -444,7 +443,7 @@ h1 {
 
 .display-area {
   min-height: 227px;
-  padding: 23px 14px 43px;
+  padding: 23px 14px 30px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -457,6 +456,7 @@ h1 {
 
 .calculator-screen {
   min-height: 66px;
+  padding-top: 15px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -466,15 +466,37 @@ h1 {
 }
 
 .previous-calculation {
+  width: 218px;
+  height: 100px;
+  display: flex;
+  justify-content: flex-end;
   font-style: normal;
   font-weight: 400;
   font-size: 1.8rem;
   line-height: 2rem;
   color: #818181;
   text-align: end;
+  overflow: auto;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #ebebeb;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: #6d6d6d;
 }
 
 .current-calculation {
+  height: 60px;
   font-style: normal;
   font-weight: 500;
   font-size: 3.8rem;
