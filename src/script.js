@@ -92,3 +92,11 @@ constants.percentage.addEventListener('click', () => {
     calculator.addSymbol(constants.percentage.innerText);
     calculator.updateScreen();
 });
+
+// Dark theme
+constants.themeSwitcher.addEventListener('click', () => {
+    constants.calculatorWrapper.classList.toggle('calculator-wrapper_dark');
+    constants.currentNumber.classList.toggle('current-calculation_dark');
+    constants.themeIcon.classList.toggle('icon_light-theme');
+    constants.themeIcon.classList.toggle('icon_dark-theme');
+});

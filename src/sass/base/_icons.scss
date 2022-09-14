@@ -1,0 +1,15 @@
+.icon {
+    width: 30px; 
+    height: 30px;
+    display: inline-block;
+    border-radius: 40px;
+    cursor: pointer;
+}
+
+.icon_light-theme {
+    background-image: url(../img/sun.svg);
+}
+
+.icon_dark-theme {
+    background-image: url(../img/moon.svg);
+}

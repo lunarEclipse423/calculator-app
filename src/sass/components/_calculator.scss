@@ -1,5 +1,5 @@
-.calculator__title {
-    text-align: center;
+.main-content {
+    padding: 40px 0;
 }
 
 .calculator-wrapper {
@@ -9,6 +9,11 @@
     background: $color-background;
     backdrop-filter: blur(102px);
     border-radius: 30px;
+    @extend %transition-theme-switch;
+}
+
+.calculator-wrapper_dark {
+    background: $color-background-dark-theme;
 }
 
 .display-area {
@@ -21,7 +26,7 @@
 
 .tools {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 .calculator-screen {
@@ -67,6 +72,11 @@
     @include font(3.8rem, 4.2rem, 500);
     color: $color-current-calc;
     text-align: end;
+    @extend %transition-theme-switch;
+}
+
+.current-calculation_dark {
+    color: $color-current-calc-dark-theme;
 }
 
 .calculator__keys {
