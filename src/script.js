@@ -10,17 +10,17 @@ window.addEventListener('keydown', e => {
         key = document.querySelector('.key.Plus');
         calculator.addOperation(key.innerText);
     } else if (e.shiftKey && e.code === 'Minus') {
-        key = document.querySelector('.key.sign');
+        key = constants.signChange;
         calculator.reverseSign();
     } else if (e.shiftKey && e.code === 'Digit8') {
         key = document.querySelector('.key.Mult');
         calculator.addOperation(key.innerText);
     } else if (e.ctrlKey && e.code === 'KeyA') {
         e.preventDefault();
-        key = document.querySelector('.key.AllClear');
+        key = constants.allClear;
         calculator.clearAll();
     } else if (e.shiftKey && e.code === 'Digit5') {
-        key = document.querySelector('.key.percentage');
+        key = constants.percentage;
         calculator.addSymbol(constants.percentage.innerText);
     } else {
         key = document.querySelector(`.key.${e.code}`);
