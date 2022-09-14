@@ -8,19 +8,19 @@ window.addEventListener('keydown', e => {
 
     if (e.shiftKey && e.code === 'Equal') {
         key = document.querySelector('.key.Plus');
-        calculator.selectOperation(key.innerText);
+        calculator.addOperation(key.innerText);
     } else if (e.shiftKey && e.code === 'Minus') {
         key = document.querySelector('.key.sign');
         calculator.reverseSign();
     } else if (e.shiftKey && e.code === 'Digit8') {
         key = document.querySelector('.key.Mult');
-        calculator.selectOperation(key.innerText);
+        calculator.addOperation(key.innerText);
     } else if (e.ctrlKey && e.code === 'KeyA') {
         e.preventDefault();
         key = document.querySelector('.key.AllClear');
         calculator.clearAll();
     } else if (e.shiftKey && e.code === 'Digit5') {
-        key = document.querySelector('.percentage');
+        key = document.querySelector('.key.percentage');
         calculator.addSymbol(constants.percentage.innerText);
     } else {
         key = document.querySelector(`.key.${e.code}`);
@@ -32,10 +32,10 @@ window.addEventListener('keydown', e => {
                 calculator.equals();
                 break;
             case 'Slash':
-                calculator.selectOperation(key.innerText);
+                calculator.addOperation(key.innerText);
                 break;
             case 'Minus':
-                calculator.selectOperation(key.innerText);
+                calculator.addOperation(key.innerText);
                 break;
             case 'ShiftLeft':
                 return;
@@ -63,7 +63,7 @@ constants.numbers.forEach(number => {
 
 constants.operations.forEach(operation => {
     operation.addEventListener('click', () => {
-        calculator.selectOperation(operation.innerText);
+        calculator.addOperation(operation.innerText);
         calculator.updateScreen();
     });
 });

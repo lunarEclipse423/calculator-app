@@ -38,7 +38,7 @@ export default class Calculator {
     }
 
     addSymbol(symbol) {
-        if (isNaN(Number(symbol)) && (symbol !== '.' || symbol !== '%')) {
+        if (isNaN(Number(symbol)) && symbol !== '.' && symbol !== '%') {
             return;
         }
 
@@ -59,11 +59,66 @@ export default class Calculator {
         this.#currentNum = this.#currentNum.toString() + symbol.toString();
     }
 
-    selectOperation(operation) {
+    calculatePercentage() {
+        if (this.#stackNumbers.peek() === undefined) {
+            this.#stackNumbers.push(0);
+        } else {
+            let current = parseFloat(this.#currentNum);
+            let percentageCount = this.#currentNum.replace(/[^%]/g, '').length;
+
+            if (OperationsPriority[this.#stackOperations.peek()] === 1) {
+                let previous = this.#stackNumbers.peek();
+                for (let i = 0; i < percentageCount; i++) {
+                    current = current * previous / 100;
+                }
+            } else if (OperationsPriority[this.#stackOperations.peek()] === 2) {
+                for (let i = 0; i < percentageCount; i++) {
+                    current = current / 100;
+                }
+            }
+            this.#stackNumbers.push(current);
+        }
+    }
+
+    performOperation() {
+        let current = this.#stackNumbers.pop();
+        let previous = this.#stackNumbers.pop();
+        let lastAddedOperation = this.#stackOperations.pop();
+        let result = '';
+
+        switch(lastAddedOperation) {
+            case '+':
+                result = previous + current;
+                break;
+            case '-':
+                result = previous - current;
+                break;
+            case '×':
+                result = previous * current;
+                break;
+            case '÷':
+                if (current === 0) {
+                    this.#isDivisionByZero = true;
+                } else {
+                    result = previous / current;
+                }
+                break;
+            default:
+                return;
+        }
+        this.#stackNumbers.push(result);
+    }
+
+    addOperation(operation) {
         if (this.#currentNum === '') {
             return;
         }
-        this.#stackNumbers.push(parseFloat(this.#currentNum));
+        if (this.#currentNum.toString().includes('%')) {
+            this.calculatePercentage();
+            this.performOperation();
+        } else {
+            this.#stackNumbers.push(parseFloat(this.#currentNum));
+        }
 
         if (this.#stackOperations.length() !== 0 && !this.#isDivisionByZero) {
             if (OperationsPriority[operation] > OperationsPriority[this.#stackOperations.peek()]) {
@@ -72,33 +127,8 @@ export default class Calculator {
                 while ((OperationsPriority[operation] < OperationsPriority[this.#stackOperations.peek()] || 
                     OperationsPriority[operation] === OperationsPriority[this.#stackOperations.peek()]) && 
                     !this.#isDivisionByZero) {
-                        let current = this.#stackNumbers.pop();
-                        let previous = this.#stackNumbers.pop();
-                        let operation = this.#stackOperations.pop();
-                        let result = '';
-    
-                        switch(operation) {
-                            case '+':
-                                result = previous + current;
-                                break;
-                            case '-':
-                                result = previous - current;
-                                break;
-                            case '×':
-                                result = previous * current;
-                                break;
-                            case '÷':
-                                if (current === 0) {
-                                    this.#isDivisionByZero = true;
-                                } else {
-                                    result = previous / current;
-                                }
-                                break;
-                            default:
-                                return;
-                        }
-                        this.#stackNumbers.push(result);
-                    }
+                        this.performOperation();
+                }
                 this.#stackOperations.push(operation);
             }
         } else {
@@ -113,37 +143,16 @@ export default class Calculator {
 
     equals() {
         if (this.#currentNum !== '') {
-            this.#stackNumbers.push(parseFloat(this.#currentNum));
+            if (this.#currentNum.toString().includes('%')) {
+                this.calculatePercentage();
+            } else {
+                this.#stackNumbers.push(parseFloat(this.#currentNum));
+            }
             this.#outputString = `${this.#outputString} ${this.#currentNum} =`;
         }
 
         while (this.#stackOperations.length() !== 0 && !this.#isDivisionByZero) {
-            let current = this.#stackNumbers.pop();
-            let previous = this.#stackNumbers.pop();
-            let operation = this.#stackOperations.pop();
-            let result = '';
-
-            switch(operation) {
-                case '+':
-                    result = previous + current;
-                    break;
-                case '-':
-                    result = previous - current;
-                    break;
-                case '×':
-                    result = previous * current;
-                    break;
-                case '÷':
-                    if (current === 0) {
-                        this.#isDivisionByZero = true;
-                    } else {
-                        result = previous / current;
-                    }
-                    break;
-                default:
-                    return;
-            }
-            this.#stackNumbers.push(result);
+            this.performOperation();
         }
 
         if (this.#isDivisionByZero) {
@@ -160,7 +169,11 @@ export default class Calculator {
         if (this.#currentNum === '') {
             return;
         }
-        const reverseNumber = -Number(this.#currentNum);
+
+        let reverseNumber = -parseFloat(this.#currentNum);
+        if (this.#currentNum.toString().includes('%')) {
+            reverseNumber = `${reverseNumber}${this.#currentNum.replace(/[^%]/g, '')}`;
+        }
         this.#currentNum = reverseNumber.toString();
     }
 
