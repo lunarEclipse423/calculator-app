@@ -9,6 +9,9 @@ window.addEventListener('keydown', e => {
     if (e.shiftKey && e.code === 'Equal') {
         key = document.querySelector('.key.Plus');
         calculator.selectOperation(key.innerText);
+    } else if (e.shiftKey && e.code === 'Minus') {
+        key = document.querySelector('.key.sign');
+        calculator.reverseSign();
     } else if (e.shiftKey && e.code === 'Digit8') {
         key = document.querySelector('.key.Mult');
         calculator.selectOperation(key.innerText);
@@ -26,7 +29,7 @@ window.addEventListener('keydown', e => {
                 calculator.cancelEntry();
                 break;
             case 'Equal':
-                calculator.calculate();
+                calculator.equals();
                 break;
             case 'Slash':
                 calculator.selectOperation(key.innerText);
@@ -81,7 +84,7 @@ constants.signChange.addEventListener('click', () => {
 });
 
 constants.equals.addEventListener('click', () => {
-    calculator.calculate();
+    calculator.equals();
     calculator.updateScreen();
 });
 
