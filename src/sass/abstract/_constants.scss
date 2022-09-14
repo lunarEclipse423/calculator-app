@@ -1,7 +1,9 @@
 $color-primary: #d0d0ce;
 $color-background: linear-gradient(167.27deg, #F7F8FB -5.94%, rgba(247, 248, 251, 0.19) 103.62%);
+$color-background-dark-theme: #17181A;
 $color-key-primary: #505050;
 $color-current-calc: #424242;
+$color-current-calc-dark-theme: #D4D4D2;
 $color-previous-calc: #818181;
 $color-title: #373737;
 
@@ -9,6 +11,9 @@ $color-key-first: #1c1c1c;
 $color-key-background-first: #D4D4D2;
 $color-key-second: #fbfafa;
 $color-key-background-second: #FF9500;
+
+$color-scrollbar-track: #ebebeb;
+$color-scrollbar-thumb: #6d6d6d;
 
 $color-key-hover: rgba(5, 5, 5, 0.4);
 $color-key-shadow: rgba(0, 0, 0, 0.25);

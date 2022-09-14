@@ -1,20 +1,36 @@
+import Stack from './Stack.js';
+
+const OperationsPriority = {
+    '+': 1,
+    '-': 1,
+    '×': 2,
+    '÷': 2
+};
+
 export default class Calculator {
     #previousNumText;
     #currentNumText;
-    #previousNum;
     #currentNum;
-    #operation;
+    #stackNumbers;
+    #stackOperations;
+    #outputString;
+    #isDivisionByZero;
 
     constructor(previousNumText, currentNumText) {
         this.#previousNumText = previousNumText;
         this.#currentNumText = currentNumText;
+        this.#stackNumbers = new Stack();
+        this.#stackOperations = new Stack();
+        this.#outputString = '';
+        this.#isDivisionByZero = false;
         this.clearAll();
     }
 
     clearAll() {
-        this.#previousNum = '';
         this.#currentNum = '';
-        this.#operation = undefined;
+        this.#stackNumbers.clear();
+        this.#stackOperations.clear();
+        this.#outputString = '';
     }
 
     cancelEntry() {
@@ -22,79 +38,55 @@ export default class Calculator {
     }
 
     addSymbol(symbol) {
+        if (isNaN(Number(symbol)) && symbol !== '.' && symbol !== '%') {
+            return;
+        }
+
         if (symbol === '.' && this.#currentNum.includes('.')) {
             return;
         }
+
         if (symbol === '%' && this.#currentNum === '') {
             return;
+        } else if (symbol !== '%' && this.#currentNum.toString().includes('%')) {
+            return;
         }
+
         if (this.#currentNum.length === 15) {
             return;
         }
-        
+
         this.#currentNum = this.#currentNum.toString() + symbol.toString();
     }
 
-    reverseSign() {
-        if (this.#currentNum === '') {
-            return;
-        }
-        const reverseNumber = -Number(this.#currentNum);
-        this.#currentNum = reverseNumber.toString();
-    }
+    calculatePercentage() {
+        if (this.#stackNumbers.peek() === undefined) {
+            this.#stackNumbers.push(0);
+        } else {
+            let current = parseFloat(this.#currentNum);
+            let percentageCount = this.#currentNum.replace(/[^%]/g, '').length;
 
-    selectOperation(operation) {
-        if (this.#currentNum === '' && this.#previousNum === '') {
-            return;
-        }
-        if (this.#currentNum === '' && this.#previousNum !== '') {
-            this.#operation = operation;
-            return;
-        }
-        if (this.#previousNum !== '') {
-            this.calculate();
-        }
-
-        this.#operation = operation;
-        this.#previousNum = this.#currentNum;
-        this.#currentNum = '';
-    }
-
-    calculate() {
-        let result = '';
-        let previous = parseFloat(this.#previousNum);
-        let current = parseFloat(this.#currentNum);
-
-        if (isNaN(previous)) {
-            if (isNaN(current)) {
-                return;
-            }
-
-            if (this.#currentNum.toString().includes('%')) {
-                const percentageCount = this.#currentNum.replace(/[^%]/g, '').length;
+            if (OperationsPriority[this.#stackOperations.peek()] === 1) {
+                let previous = this.#stackNumbers.peek();
+                for (let i = 0; i < percentageCount; i++) {
+                    current = current * previous / 100;
+                }
+            } else if (OperationsPriority[this.#stackOperations.peek()] === 2) {
                 for (let i = 0; i < percentageCount; i++) {
                     current = current / 100;
                 }
-                this.#currentNum = current;
             }
-            return;
+            this.#stackNumbers.push(current);
         }
+    }
 
-        if (this.#previousNum.toString().includes('%')) {
-            const percentageCount = this.#previousNum.replace(/[^%]/g, '').length;
-            for (let i = 0; i < percentageCount; i++) {
-                previous = previous / 100;
-            }
-        }
+    performOperation() {
+        let current = this.#stackNumbers.pop();
+        let previous = this.#stackNumbers.pop();
+        let lastAddedOperation = this.#stackOperations.pop();
+        let result = '';
 
-        let currentPercentageCount = 0;
-        if (this.#currentNum.toString().includes('%')) {
-            currentPercentageCount = this.#currentNum.replace(/[^%]/g, '').length;
-            current = previous * current / 100;
-            currentPercentageCount = currentPercentageCount - 1;
-        }
-
-        switch(this.#operation) {
+        switch(lastAddedOperation) {
             case '+':
                 result = previous + current;
                 break;
@@ -106,7 +98,7 @@ export default class Calculator {
                 break;
             case '÷':
                 if (current === 0) {
-                    result = 'Cannot divide by zero';
+                    this.#isDivisionByZero = true;
                 } else {
                     result = previous / current;
                 }
@@ -114,16 +106,75 @@ export default class Calculator {
             default:
                 return;
         }
+        this.#stackNumbers.push(result);
+    }
 
-        if (currentPercentageCount !== 0 && result !== 'Cannot divide by zero') {
-            for (let i = 0; i < currentPercentageCount; i++) {
-                result = result / 100;
-            }
+    addOperation(operation) {
+        if (this.#currentNum === '') {
+            return;
+        }
+        if (this.#currentNum.toString().includes('%')) {
+            this.calculatePercentage();
+            this.performOperation();
+        } else {
+            this.#stackNumbers.push(parseFloat(this.#currentNum));
         }
 
-        this.#operation = undefined;
-        this.#currentNum = result;
-        this.#previousNum = '';
+        if (this.#stackOperations.length() !== 0 && !this.#isDivisionByZero) {
+            if (OperationsPriority[operation] > OperationsPriority[this.#stackOperations.peek()]) {
+                this.#stackOperations.push(operation);
+            } else {
+                while ((OperationsPriority[operation] < OperationsPriority[this.#stackOperations.peek()] || 
+                    OperationsPriority[operation] === OperationsPriority[this.#stackOperations.peek()]) && 
+                    !this.#isDivisionByZero) {
+                        this.performOperation();
+                }
+                this.#stackOperations.push(operation);
+            }
+        } else {
+            this.#stackOperations.push(operation);
+        }
+        
+        this.#outputString = parseFloat(this.#currentNum) < 0 ?
+            `${this.#outputString} (${this.#currentNum}) ${operation}` : 
+            `${this.#outputString} ${this.#currentNum} ${operation}`;
+        this.#currentNum = '';
+    }
+
+    equals() {
+        if (this.#currentNum !== '') {
+            if (this.#currentNum.toString().includes('%')) {
+                this.calculatePercentage();
+            } else {
+                this.#stackNumbers.push(parseFloat(this.#currentNum));
+            }
+            this.#outputString = `${this.#outputString} ${this.#currentNum} =`;
+        }
+
+        while (this.#stackOperations.length() !== 0 && !this.#isDivisionByZero) {
+            this.performOperation();
+        }
+
+        if (this.#isDivisionByZero) {
+            this.#currentNum = 'Cannot divide by zero';
+            this.#stackNumbers.clear();
+            this.#stackOperations.clear();
+            this.#isDivisionByZero = false;
+        } else {
+            this.#currentNum = this.#stackNumbers.pop();
+        }
+    }
+
+    reverseSign() {
+        if (this.#currentNum === '') {
+            return;
+        }
+
+        let reverseNumber = -parseFloat(this.#currentNum);
+        if (this.#currentNum.toString().includes('%')) {
+            reverseNumber = `${reverseNumber}${this.#currentNum.replace(/[^%]/g, '')}`;
+        }
+        this.#currentNum = reverseNumber.toString();
     }
 
     displayNumber(num) {
@@ -150,17 +201,7 @@ export default class Calculator {
         } else {
             this.#currentNumText.innerText = this.displayNumber(this.#currentNum);
         }
-        
-        if (this.#operation != null) {
-            if (this.#previousNum.toString().includes('%')) {
-                this.#previousNumText.innerText = 
-                    `${this.displayNumber(this.#previousNum).padEnd(this.#previousNum.length, '%')} ${this.#operation}`;
-            } else {
-                this.#previousNumText.innerText = 
-                    `${this.displayNumber(this.#previousNum)} ${this.#operation}`;
-            }
-        } else {
-            this.#previousNumText.innerText = '';
-        }
+
+        this.#previousNumText.innerText = this.#outputString;
     }
 }

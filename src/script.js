@@ -8,16 +8,19 @@ window.addEventListener('keydown', e => {
 
     if (e.shiftKey && e.code === 'Equal') {
         key = document.querySelector('.key.Plus');
-        calculator.selectOperation(key.innerText);
+        calculator.addOperation(key.innerText);
+    } else if (e.shiftKey && e.code === 'Minus') {
+        key = constants.signChange;
+        calculator.reverseSign();
     } else if (e.shiftKey && e.code === 'Digit8') {
         key = document.querySelector('.key.Mult');
-        calculator.selectOperation(key.innerText);
+        calculator.addOperation(key.innerText);
     } else if (e.ctrlKey && e.code === 'KeyA') {
         e.preventDefault();
-        key = document.querySelector('.key.AllClear');
+        key = constants.allClear;
         calculator.clearAll();
     } else if (e.shiftKey && e.code === 'Digit5') {
-        key = document.querySelector('.percentage');
+        key = constants.percentage;
         calculator.addSymbol(constants.percentage.innerText);
     } else {
         key = document.querySelector(`.key.${e.code}`);
@@ -26,13 +29,13 @@ window.addEventListener('keydown', e => {
                 calculator.cancelEntry();
                 break;
             case 'Equal':
-                calculator.calculate();
+                calculator.equals();
                 break;
             case 'Slash':
-                calculator.selectOperation(key.innerText);
+                calculator.addOperation(key.innerText);
                 break;
             case 'Minus':
-                calculator.selectOperation(key.innerText);
+                calculator.addOperation(key.innerText);
                 break;
             case 'ShiftLeft':
                 return;
@@ -60,7 +63,7 @@ constants.numbers.forEach(number => {
 
 constants.operations.forEach(operation => {
     operation.addEventListener('click', () => {
-        calculator.selectOperation(operation.innerText);
+        calculator.addOperation(operation.innerText);
         calculator.updateScreen();
     });
 });
@@ -81,11 +84,19 @@ constants.signChange.addEventListener('click', () => {
 });
 
 constants.equals.addEventListener('click', () => {
-    calculator.calculate();
+    calculator.equals();
     calculator.updateScreen();
 });
 
 constants.percentage.addEventListener('click', () => {
     calculator.addSymbol(constants.percentage.innerText);
     calculator.updateScreen();
+});
+
+// Dark theme
+constants.themeSwitcher.addEventListener('click', () => {
+    constants.calculatorWrapper.classList.toggle('calculator-wrapper_dark');
+    constants.currentNumber.classList.toggle('current-calculation_dark');
+    constants.themeIcon.classList.toggle('icon_light-theme');
+    constants.themeIcon.classList.toggle('icon_dark-theme');
 });

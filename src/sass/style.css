@@ -401,8 +401,28 @@ ul {
   box-sizing: border-box;
 }
 
+.icon {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  border-radius: 40px;
+  cursor: pointer;
+}
+
+.icon_light-theme {
+  background-image: url(../img/sun.svg);
+}
+
+.icon_dark-theme {
+  background-image: url(../img/moon.svg);
+}
+
 h1, body {
   font-family: "Poppins", Verdana, sans-serif;
+}
+
+.current-calculation, .calculator-wrapper {
+  transition: all 1s ease;
 }
 
 html {
@@ -428,13 +448,12 @@ h1 {
   color: #373737;
 }
 
-.calculator__title {
-  text-align: center;
+.main-content {
+  padding: 40px 0;
 }
 
 .calculator-wrapper {
   width: 300px;
-  height: 590px;
   margin: 0 auto;
   padding: 0 27px 0;
   background: linear-gradient(167.27deg, #F7F8FB -5.94%, rgba(247, 248, 251, 0.19) 103.62%);
@@ -442,9 +461,13 @@ h1 {
   border-radius: 30px;
 }
 
+.calculator-wrapper_dark {
+  background: #17181A;
+}
+
 .display-area {
   min-height: 227px;
-  padding: 23px 14px 43px;
+  padding: 23px 14px 30px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -452,11 +475,12 @@ h1 {
 
 .tools {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 .calculator-screen {
   min-height: 66px;
+  padding-top: 15px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -466,21 +490,47 @@ h1 {
 }
 
 .previous-calculation {
+  width: 218px;
+  height: 100px;
+  display: flex;
+  justify-content: flex-end;
   font-style: normal;
   font-weight: 400;
   font-size: 1.8rem;
   line-height: 2rem;
   color: #818181;
   text-align: end;
+  overflow: auto;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #ebebeb;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: #6d6d6d;
 }
 
 .current-calculation {
+  height: 60px;
   font-style: normal;
   font-weight: 500;
   font-size: 3.8rem;
   line-height: 4.2rem;
   color: #424242;
   text-align: end;
+}
+
+.current-calculation_dark {
+  color: #D4D4D2;
 }
 
 .calculator__keys {
