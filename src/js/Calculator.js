@@ -85,28 +85,33 @@ export default class Calculator {
         let previous = this.#stackNumbers.pop();
         let lastAddedOperation = this.#stackOperations.pop();
         let result = '';
+        let precision = 0;
+        if (current.toString().includes('.') || previous.toString().includes('.')) {
+            precision = Math.max(current.toString().split('.').pop().length, 
+            previous.toString().split('.').pop().length);
+        }
 
         switch(lastAddedOperation) {
             case '+':
-                result = previous + current;
+                result = (previous + current).toFixed(precision);
                 break;
             case '-':
-                result = previous - current;
+                result = (previous - current).toFixed(precision);
                 break;
             case '×':
-                result = previous * current;
+                result = (previous * current).toFixed(precision);
                 break;
             case '÷':
                 if (current === 0) {
                     this.#isDivisionByZero = true;
                 } else {
-                    result = previous / current;
+                    result = (previous / current).toFixed(precision);
                 }
                 break;
             default:
                 return;
         }
-        this.#stackNumbers.push(result);
+        this.#stackNumbers.push(parseFloat(result));
     }
 
     addOperation(operation) {
