@@ -410,18 +410,18 @@ ul {
 }
 
 .icon_light-theme {
-  background-image: url(../img/sun.svg);
+  background-image: url(../svg/sun.svg);
 }
 
 .icon_dark-theme {
-  background-image: url(../img/moon.svg);
+  background-image: url(../svg/moon.svg);
 }
 
-h1, body {
+body {
   font-family: "Poppins", Verdana, sans-serif;
 }
 
-.current-calculation, .calculator-wrapper {
+.current-calculation, .calculator {
   transition: all 1s ease;
 }
 
@@ -431,30 +431,42 @@ html {
 
 body {
   padding: 0;
-  background-image: url("../img/background.jpg");
+  background-image: url("../img/bg.jpg");
   background-size: cover;
+  background-repeat: no-repeat;
   font-style: normal;
   font-weight: 500;
   font-size: 2rem;
-  line-height: 1.2rem;
+  line-height: 2.3rem;
   color: #d0d0ce;
 }
 
 h1 {
+  margin-bottom: 0;
   font-style: normal;
   font-weight: 600;
   font-size: 2.4rem;
   line-height: 3rem;
-  color: #373737;
+  color: #ff6b40;
+}
+
+h2 {
+  margin: 0;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 2rem;
+  line-height: 2.6rem;
+  color: #ff6b40;
 }
 
 .main-content {
-  padding: 40px 0;
+  padding: 40px 350px;
+  display: flex;
+  justify-content: space-between;
 }
 
-.calculator-wrapper {
+.calculator {
   width: 300px;
-  margin: 0 auto;
   padding: 0 27px 0;
   background: linear-gradient(167.27deg, #F7F8FB -5.94%, rgba(247, 248, 251, 0.19) 103.62%);
   backdrop-filter: blur(102px);
@@ -523,8 +535,8 @@ h1 {
   height: 60px;
   font-style: normal;
   font-weight: 500;
-  font-size: 3.8rem;
-  line-height: 4.2rem;
+  font-size: 3.3rem;
+  line-height: 3.6rem;
   color: #424242;
   text-align: end;
 }
@@ -599,6 +611,42 @@ h1 {
 .Equal.selected {
   background: #fbfafa;
   color: #FF9500;
+}
+
+.instructions {
+  padding-right: 40px;
+  color: #540031;
+}
+
+.keyboard-shortcuts {
+  display: flex;
+  flex-direction: row;
+}
+
+.shortcuts {
+  padding-right: 35px;
+}
+
+.shortcuts-item {
+  padding-bottom: 5px;
+}
+
+.comments-item {
+  padding-bottom: 6px;
+}
+
+.kbd-item {
+  background-color: #eee;
+  border-radius: 3px;
+  border: 1px solid #b4b4b4;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 2px 0 0 rgba(255, 255, 255, 0.7) inset;
+  color: #540031;
+  display: inline-block;
+  font-size: 0.85em;
+  font-weight: 700;
+  line-height: 1;
+  padding: 2px 4px;
+  white-space: nowrap;
 }
 
 /*# sourceMappingURL=style.css.map */

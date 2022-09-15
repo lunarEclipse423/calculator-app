@@ -46,7 +46,7 @@ export default class Calculator {
             return;
         }
 
-        if (symbol === '%' && this.#currentNum === '') {
+        if (symbol === '%' && this.#currentNum.toString() === '') {
             return;
         } else if (symbol !== '%' && this.#currentNum.toString().includes('%')) {
             return;
@@ -83,8 +83,18 @@ export default class Calculator {
     performOperation() {
         let current = this.#stackNumbers.pop();
         let previous = this.#stackNumbers.pop();
+        if (isNaN(current) || isNaN(previous)) {
+            if (!isNaN(previous)) {
+                this.#stackNumbers.push(previous);
+            }
+            if (!isNaN(current)) {
+                this.#stackNumbers.push(current);
+            }
+            return;
+        }
         let lastAddedOperation = this.#stackOperations.pop();
-        let result = '';
+        let result = 0;
+        let precision = 100000000;
 
         switch(lastAddedOperation) {
             case '+':
@@ -106,6 +116,7 @@ export default class Calculator {
             default:
                 return;
         }
+        result = Math.round((result + Number.EPSILON) * precision) / precision;
         this.#stackNumbers.push(result);
     }
 
@@ -117,7 +128,8 @@ export default class Calculator {
             this.calculatePercentage();
             this.performOperation();
         } else {
-            this.#stackNumbers.push(parseFloat(this.#currentNum));
+            this.#currentNum = parseFloat(this.#currentNum);
+            this.#stackNumbers.push(this.#currentNum);
         }
 
         if (this.#stackOperations.length() !== 0 && !this.#isDivisionByZero) {
@@ -146,9 +158,24 @@ export default class Calculator {
             if (this.#currentNum.toString().includes('%')) {
                 this.calculatePercentage();
             } else {
-                this.#stackNumbers.push(parseFloat(this.#currentNum));
+                this.#currentNum = parseFloat(this.#currentNum);
+                this.#stackNumbers.push(this.#currentNum);
             }
             this.#outputString = `${this.#outputString} ${this.#currentNum} =`;
+        }
+
+        if (this.#stackNumbers.length() === 0) {
+            return;
+        }
+
+        if (this.#stackNumbers.length() === 1) {
+            this.#currentNum = this.#stackNumbers.pop();
+            if (isNaN(this.#outputString[length - 1])) {
+                this.#outputString = `${this.#outputString.slice(0, -1)} =`;
+            }
+            this.#stackNumbers.clear();
+            this.#stackOperations.clear();
+            return;
         }
 
         while (this.#stackOperations.length() !== 0 && !this.#isDivisionByZero) {
@@ -193,7 +220,10 @@ export default class Calculator {
     }
 
     updateScreen() {
-        if (this.#currentNum.toString().includes('%')) {
+        if (this.#currentNum === undefined) {
+            this.#currentNumText.innerText = '';
+            this.#currentNum = '';
+        } else if (this.#currentNum.toString().includes('%')) {
             this.#currentNumText.innerText = this.displayNumber(this.#currentNum).padEnd(this.#currentNum.length, '%');
         } else if (this.#currentNum === 'Cannot divide by zero') {
             this.#currentNumText.innerText = this.#currentNum;

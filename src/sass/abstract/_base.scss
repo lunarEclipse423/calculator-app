@@ -4,15 +4,22 @@ html {
 
 body {
     padding: 0;
-    background-image: url('../img/background.jpg');
+    background-image: url('../img/bg.jpg');
     background-size: cover;
+    background-repeat: no-repeat;
     @extend %font-primary;
-    @include font(2.0rem, 1.2rem, 500);
+    @include font(2.0rem, 2.3rem, 500);
     color: $color-primary;
 }
 
 h1 {
-    @extend %font-primary;
+    margin-bottom: 0;
     @include font(2.4rem, 3.0rem);
     color: $color-title;
+}
+
+h2 {
+    margin: 0;
+    @include font(2.0rem, 2.6rem);
+    color: $color-subtitle;
 }

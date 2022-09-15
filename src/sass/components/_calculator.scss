@@ -1,10 +1,11 @@
 .main-content {
-    padding: 40px 0;
+    padding: 40px 350px;
+    display: flex;
+    justify-content: space-between;
 }
 
-.calculator-wrapper {
+.calculator {
     width: 300px;
-    margin: 0 auto;
     padding: 0 27px 0;
     background: $color-background;
     backdrop-filter: blur(102px);
@@ -69,7 +70,7 @@
 
 .current-calculation {
     height: 60px;
-    @include font(3.8rem, 4.2rem, 500);
+    @include font(3.3rem, 3.6rem, 500);
     color: $color-current-calc;
     text-align: end;
     @extend %transition-theme-switch;
