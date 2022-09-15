@@ -19,7 +19,6 @@ h1 {
 }
 
 h2 {
-  margin: 0;
   @include font(2rem, 2.6rem);
   color: $color-subtitle;
 }
