@@ -421,8 +421,22 @@ body {
   font-family: "Poppins", Verdana, sans-serif;
 }
 
-.current-calculation, .calculator {
+.calculations__current, .calculator {
   transition: all 1s ease;
+}
+
+.calculations__previous::-webkit-scrollbar {
+  width: 4px;
+}
+.calculations__previous::-webkit-scrollbar-track {
+  background-color: #ebebeb;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+.calculations__previous::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: #6d6d6d;
 }
 
 html {
@@ -459,12 +473,6 @@ h2 {
   color: #ff6b40;
 }
 
-.main-content {
-  padding: 40px 350px;
-  display: flex;
-  justify-content: space-between;
-}
-
 .calculator {
   width: 300px;
   padding: 0 27px 0;
@@ -477,7 +485,7 @@ h2 {
   background: #17181A;
 }
 
-.display-area {
+.calculator__display {
   min-height: 227px;
   padding: 23px 14px 30px;
   display: flex;
@@ -490,7 +498,7 @@ h2 {
   justify-content: space-between;
 }
 
-.calculator-screen {
+.calculations {
   min-height: 66px;
   padding-top: 15px;
   display: flex;
@@ -501,7 +509,7 @@ h2 {
   word-break: break-all;
 }
 
-.previous-calculation {
+.calculations__previous {
   width: 218px;
   height: 100px;
   display: flex;
@@ -515,23 +523,7 @@ h2 {
   overflow: auto;
 }
 
-::-webkit-scrollbar {
-  width: 4px;
-}
-
-::-webkit-scrollbar-track {
-  background-color: #ebebeb;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-  background: #6d6d6d;
-}
-
-.current-calculation {
+.calculations__current {
   height: 60px;
   font-style: normal;
   font-weight: 500;
@@ -618,7 +610,7 @@ h2 {
   color: #540031;
 }
 
-.keyboard-shortcuts {
+.instructions__keyboard-shortcuts {
   display: flex;
   flex-direction: row;
 }
@@ -627,26 +619,32 @@ h2 {
   padding-right: 35px;
 }
 
-.shortcuts-item {
+.shortcuts__item {
   padding-bottom: 5px;
 }
 
-.comments-item {
+.comments__item {
   padding-bottom: 6px;
 }
 
-.kbd-item {
+.kbd {
   background-color: #eee;
   border-radius: 3px;
   border: 1px solid #b4b4b4;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 2px 0 0 rgba(255, 255, 255, 0.7) inset;
   color: #540031;
   display: inline-block;
-  font-size: 0.85em;
+  font-size: 1.7rem;
   font-weight: 700;
   line-height: 1;
   padding: 2px 4px;
   white-space: nowrap;
+}
+
+.main {
+  padding: 40px 350px;
+  display: flex;
+  justify-content: space-between;
 }
 
 /*# sourceMappingURL=style.css.map */
