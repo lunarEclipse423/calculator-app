@@ -11,7 +11,7 @@
     background: $color-background-dark-theme;
 }
 
-.display-area {
+.calculator__display {
     min-height: 227px;
     padding: 23px 14px 30px;
     display: flex;
@@ -24,7 +24,7 @@
     justify-content: space-between;
 }
 
-.calculator-screen {
+.calculations {
     min-height: 66px;
     padding-top: 15px;
     display: flex;
@@ -35,7 +35,7 @@
     word-break: break-all;
 }
 
-.previous-calculation {
+.calculations__previous {
     width: 218px; 
     height: 100px;
     display: flex;
@@ -47,7 +47,7 @@
     @extend %custom-scroll;
 }
 
-.current-calculation {
+.calculations__current {
     height: 60px;
     @include font(3.3rem, 3.6rem, 500);
     color: $color-current-calc;

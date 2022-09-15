@@ -10,48 +10,48 @@
     <link rel="stylesheet" href="./src/sass/style.css">
 </head>
 <body>
-    <main class="main-content">
-        <div class="instructions">
+    <main class="main">
+        <div class="instructions main__instructions">
             <h1 class="instructions__title">Hello there!</h1>
             <p>Searching the Internet for so long and we finally met. I've been waiting for you to come, cause every journey has its final day.</p>
             <h2>This calculator has keyboard support, so here are some shortcuts:</h2>
-            <div class="keyboard-shortcuts">
+            <div class="instructions__keyboard-shortcuts">
                 <ul class="shortcuts">
-                    <li class="shortcuts-item"><kbd class="kbd-item">Alt</kbd> + <kbd class="kbd-item">C</kbd></li>
-                    <li class="shortcuts-item"><kbd class="kbd-item">Backspace</kbd></li>
-                    <li class="shortcuts-item"><kbd class="kbd-item">/</kbd></li>
-                    <li class="shortcuts-item"><kbd class="kbd-item">Shift</kbd> + <kbd class="kbd-item">8</kbd></li>
-                    <li class="shortcuts-item"><kbd class="kbd-item">-</kbd></li>
-                    <li class="shortcuts-item"><kbd class="kbd-item">Shift</kbd> + <kbd class="kbd-item">=</kbd></li>
-                    <li class="shortcuts-item"><kbd class="kbd-item">=</kbd></li>
-                    <li class="shortcuts-item"><kbd class="kbd-item">Shift</kbd> + <kbd class="kbd-item">5</kbd></li>
-                    <li class="shortcuts-item"><kbd class="kbd-item">Shift</kbd> + <kbd class="kbd-item">-</kbd></li>
+                    <li class="shortcuts__item"><kbd class="kbd">Alt</kbd> + <kbd class="kbd">C</kbd></li>
+                    <li class="shortcuts__item"><kbd class="kbd">Backspace</kbd></li>
+                    <li class="shortcuts__item"><kbd class="kbd">/</kbd></li>
+                    <li class="shortcuts__item"><kbd class="kbd">Shift</kbd> + <kbd class="kbd">8</kbd></li>
+                    <li class="shortcuts__item"><kbd class="kbd">-</kbd></li>
+                    <li class="shortcuts__item"><kbd class="kbd">Shift</kbd> + <kbd class="kbd">=</kbd></li>
+                    <li class="shortcuts__item"><kbd class="kbd">=</kbd></li>
+                    <li class="shortcuts__item"><kbd class="kbd">Shift</kbd> + <kbd class="kbd">5</kbd></li>
+                    <li class="shortcuts__item"><kbd class="kbd">Shift</kbd> + <kbd class="kbd">-</kbd></li>
                 </ul>
                 <ul class="comments">
-                    <li class="comments-item">All Clear</li>
-                    <li class="comments-item">Clear Entry</li>
-                    <li class="comments-item">Division</li>
-                    <li class="comments-item">Multiplication</li>
-                    <li class="comments-item">Subtraction</li>
-                    <li class="comments-item">Summation</li>
-                    <li class="comments-item">Equals</li>
-                    <li class="comments-item">Percent</li>
-                    <li class="comments-item">Sign change</li>
+                    <li class="comments__item">All Clear</li>
+                    <li class="comments__item">Clear Entry</li>
+                    <li class="comments__item">Division</li>
+                    <li class="comments__item">Multiplication</li>
+                    <li class="comments__item">Subtraction</li>
+                    <li class="comments__item">Summation</li>
+                    <li class="comments__item">Equals</li>
+                    <li class="comments__item">Percent</li>
+                    <li class="comments__item">Sign change</li>
                 </ul>
             </div>
             <h2>Remember: you can enter a number no longer than 15 characters at a time</h2>
         </div>
-            <div class="calculator">
-                <div class="display-area">
+            <div class="calculator main__calculator">
+                <div class="calculator__display">
                     <div class="tools">
-                        <div class="history"></div>
-                        <div class="theme-switcher">
+                        <div class="tools__history"></div>
+                        <div class="tools__theme-switcher">
                             <span class="icon icon_light-theme"></span>
                         </div>
                     </div>
-                    <div class="calculator-screen">
-                        <div class="previous-calculation"></div>
-                        <div class="current-calculation"></div>
+                    <div class="calculations">
+                        <div class="calculations__previous"></div>
+                        <div class="calculations__current"></div>
                     </div>
                 </div>
                 <div class="calculator__keys">

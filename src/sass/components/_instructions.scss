@@ -3,7 +3,7 @@
     color: $color-text;
 }
 
-.keyboard-shortcuts {
+.instructions__keyboard-shortcuts {
     display: flex;
     flex-direction: row;
 }
@@ -12,15 +12,15 @@
     padding-right: 35px;
 }
 
-.shortcuts-item {
+.shortcuts__item {
     padding-bottom: 5px;
 }
 
-.comments-item {
+.comments__item {
     padding-bottom: 6px;
 }
 
-.kbd-item {
+.kbd {
     background-color: #eee;
     border-radius: 3px;
     border: 1px solid #b4b4b4;
