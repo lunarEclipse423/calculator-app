@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/lunarEclipse423/calculator-app/issues"
   },
-  "homepage": "https://github.com/lunarEclipse423/calculator-app#readme"
+  "homepage": "https://github.com/lunarEclipse423/calculator-app#readme",
+  "devDependencies": {
+    "eslint": "^8.23.1",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0"
+  }
 }
