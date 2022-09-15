@@ -40,4 +40,4 @@
 ## Дополнительно
 
 [Дизайн калькулятора (figma)](https://www.figma.com/community/file/1138972240395739631)  
-[Демо](https://lunareclipse423.github.io/calculator-app/https://lunareclipse423.github.io/calculator-app/)  
+[Демо](https://lunareclipse423.github.io/calculator-app/)  
