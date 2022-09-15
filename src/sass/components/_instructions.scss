@@ -4,8 +4,12 @@
 }
 
 .instructions__keyboard-shortcuts {
+  padding: 0 30px;
   display: flex;
   flex-direction: row;
+  background: $color-background;
+  backdrop-filter: blur(102px);
+  border-radius: 30px;
 }
 
 .shortcuts {
