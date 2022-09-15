@@ -83,35 +83,41 @@ export default class Calculator {
     performOperation() {
         let current = this.#stackNumbers.pop();
         let previous = this.#stackNumbers.pop();
-        let lastAddedOperation = this.#stackOperations.pop();
-        let result = '';
-        let precision = 0;
-        if (current.toString().includes('.') || previous.toString().includes('.')) {
-            precision = Math.max(current.toString().split('.').pop().length, 
-            previous.toString().split('.').pop().length);
+        if (isNaN(current) || isNaN(previous)) {
+            if (!isNaN(previous)) {
+                this.#stackNumbers.push(previous);
+            }
+            if (!isNaN(current)) {
+                this.#stackNumbers.push(current);
+            }
+            return;
         }
+        let lastAddedOperation = this.#stackOperations.pop();
+        let result = 0;
+        let precision = 100000000;
 
         switch(lastAddedOperation) {
             case '+':
-                result = (previous + current).toFixed(precision);
+                result = previous + current;
                 break;
             case '-':
-                result = (previous - current).toFixed(precision);
+                result = previous - current;
                 break;
             case '×':
-                result = (previous * current).toFixed(precision);
+                result = previous * current;
                 break;
             case '÷':
                 if (current === 0) {
                     this.#isDivisionByZero = true;
                 } else {
-                    result = (previous / current).toFixed(precision);
+                    result = previous / current;
                 }
                 break;
             default:
                 return;
         }
-        this.#stackNumbers.push(parseFloat(result));
+        result = Math.round((result + Number.EPSILON) * precision) / precision;
+        this.#stackNumbers.push(result);
     }
 
     addOperation(operation) {
@@ -122,7 +128,8 @@ export default class Calculator {
             this.calculatePercentage();
             this.performOperation();
         } else {
-            this.#stackNumbers.push(parseFloat(this.#currentNum));
+            this.#currentNum = parseFloat(this.#currentNum);
+            this.#stackNumbers.push(this.#currentNum);
         }
 
         if (this.#stackOperations.length() !== 0 && !this.#isDivisionByZero) {
@@ -147,24 +154,27 @@ export default class Calculator {
     }
 
     equals() {
-        if (this.#stackNumbers.length() === 0) {
-            return;
-        }
-
         if (this.#currentNum !== '') {
             if (this.#currentNum.toString().includes('%')) {
                 this.calculatePercentage();
             } else {
-                this.#stackNumbers.push(parseFloat(this.#currentNum));
+                this.#currentNum = parseFloat(this.#currentNum);
+                this.#stackNumbers.push(this.#currentNum);
             }
             this.#outputString = `${this.#outputString} ${this.#currentNum} =`;
         }
 
-        if (this.#stackNumbers.length() < 2) {
+        if (this.#stackNumbers.length() === 0) {
+            return;
+        }
+
+        if (this.#stackNumbers.length() === 1) {
             this.#currentNum = this.#stackNumbers.pop();
+            if (isNaN(this.#outputString[length - 1])) {
+                this.#outputString = `${this.#outputString.slice(0, -1)} =`;
+            }
             this.#stackNumbers.clear();
             this.#stackOperations.clear();
-            this.#outputString = `${this.#currentNum} =`;
             return;
         }
 
