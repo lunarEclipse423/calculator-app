@@ -44,7 +44,7 @@ export default class Calculator {
   }
 
   addSymbol(symbol) {
-    if (Number.isNaN(Number(symbol)) && symbol !== "." && symbol !== "%") {
+    if (isNaN(Number(symbol)) && symbol !== "." && symbol !== "%") {
       return;
     }
 
@@ -55,7 +55,7 @@ export default class Calculator {
     if (symbol === "%" && this.#currentNum.toString() === "") {
       return;
     }
-    
+
     if (symbol !== "%" && this.#currentNum.toString().includes("%")) {
       return;
     }
@@ -91,11 +91,11 @@ export default class Calculator {
   performOperation() {
     const current = this.#stackNumbers.pop();
     const previous = this.#stackNumbers.pop();
-    if (Number.isNaN(current) || Number.isNaN(previous)) {
-      if (!Number.isNaN(previous)) {
+    if (isNaN(current) || isNaN(previous)) {
+      if (!isNaN(previous)) {
         this.#stackNumbers.push(previous);
       }
-      if (!Number.isNaN(current)) {
+      if (!isNaN(current)) {
         this.#stackNumbers.push(current);
       }
       return;
@@ -185,7 +185,7 @@ export default class Calculator {
 
     if (this.#stackNumbers.length() === 1) {
       this.#currentNum = this.#stackNumbers.pop();
-      if (Number.isNaN(this.#outputString[this.#outputString.length - 1])) {
+      if (isNaN(this.#outputString[this.#outputString.length - 1])) {
         this.#outputString = `${this.#outputString.slice(0, -1)} =`;
       }
       this.#stackNumbers.clear();
@@ -225,7 +225,7 @@ export default class Calculator {
     const decimalPart = stringNumber.split(".")[1];
     let integerPartDisplay = "";
 
-    if (!Number.isNaN(integerPart)) {
+    if (!isNaN(integerPart)) {
       integerPartDisplay = integerPart.toLocaleString("en", {
         maximumFractionDigits: 0,
       });
