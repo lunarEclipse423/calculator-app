@@ -44,22 +44,7 @@
     color: $color-previous-calc;
     text-align: end;
     overflow: auto;
-}
-
-::-webkit-scrollbar {
-    width: 4px;
-}
- 
-::-webkit-scrollbar-track {
-    background-color: $color-scrollbar-track;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-    background: $color-scrollbar-thumb; 
+    @extend %custom-scroll;
 }
 
 .current-calculation {
