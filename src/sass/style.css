@@ -459,12 +459,6 @@ h2 {
   color: #ff6b40;
 }
 
-.main-content {
-  padding: 40px 350px;
-  display: flex;
-  justify-content: space-between;
-}
-
 .calculator {
   width: 300px;
   padding: 0 27px 0;
@@ -647,6 +641,12 @@ h2 {
   line-height: 1;
   padding: 2px 4px;
   white-space: nowrap;
+}
+
+.main-content {
+  padding: 40px 350px;
+  display: flex;
+  justify-content: space-between;
 }
 
 /*# sourceMappingURL=style.css.map */
