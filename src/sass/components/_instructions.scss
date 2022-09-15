@@ -1,35 +1,35 @@
 .instructions {
-    padding-right: 40px;
-    color: $color-text;
+  padding-right: 40px;
+  color: $color-text;
 }
 
 .instructions__keyboard-shortcuts {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .shortcuts {
-    padding-right: 35px;
+  padding-right: 35px;
 }
 
 .shortcuts__item {
-    padding-bottom: 5px;
+  padding-bottom: 5px;
 }
 
 .comments__item {
-    padding-bottom: 6px;
+  padding-bottom: 6px;
 }
 
 .kbd {
-    background-color: #eee;
-    border-radius: 3px;
-    border: 1px solid #b4b4b4;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, .2), 0 2px 0 0 rgba(255, 255, 255, .7) inset;
-    color: $color-text;
-    display: inline-block;
-    font-size: 1.7rem;
-    font-weight: 700;
-    line-height: 1;
-    padding: 2px 4px;
-    white-space: nowrap;
+  background-color: #eee;
+  border-radius: 3px;
+  border: 1px solid #b4b4b4;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 2px 0 0 rgba(255, 255, 255, 0.7) inset;
+  color: $color-text;
+  display: inline-block;
+  font-size: 1.7rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 2px 4px;
+  white-space: nowrap;
 }

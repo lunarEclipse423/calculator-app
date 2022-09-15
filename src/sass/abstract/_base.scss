@@ -1,25 +1,25 @@
 html {
-    font-size: 10px;
+  font-size: 10px;
 }
 
 body {
-    padding: 0;
-    background-image: url('../img/bg.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    @extend %font-primary;
-    @include font(2.0rem, 2.3rem, 500);
-    color: $color-primary;
+  padding: 0;
+  background-image: url("../img/bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  @extend %font-primary;
+  @include font(2rem, 2.3rem, 500);
+  color: $color-primary;
 }
 
 h1 {
-    margin-bottom: 0;
-    @include font(2.4rem, 3.0rem);
-    color: $color-title;
+  margin-bottom: 0;
+  @include font(2.4rem, 3rem);
+  color: $color-title;
 }
 
 h2 {
-    margin: 0;
-    @include font(2.0rem, 2.6rem);
-    color: $color-subtitle;
+  margin: 0;
+  @include font(2rem, 2.6rem);
+  color: $color-subtitle;
 }

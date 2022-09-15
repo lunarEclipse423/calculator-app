@@ -1,103 +1,110 @@
-import * as constants from './js/constants.js';
-import Calculator from './js/Calculator.js';
+import * as constants from "./js/constants.js";
+import Calculator from "./js/Calculator.js";
 
-const calculator = new Calculator(constants.previousOperandText, constants.currentOperandText);
+const calculator = new Calculator(
+  constants.previousOperandText,
+  constants.currentOperandText
+);
 
 // Keyboard support
 
-window.addEventListener('keydown', (e) => {
+window.addEventListener("keydown", (e) => {
   let key;
-  if (e.shiftKey && e.code === 'Equal') {
-    key = document.querySelector('.key.Plus');
+  if (e.shiftKey && e.code === "Equal") {
+    key = document.querySelector(".key.Plus");
     calculator.addOperation(key.innerText);
-  } else if (e.shiftKey && e.code === 'Minus') {
+  } else if (e.shiftKey && e.code === "Minus") {
     key = constants.signChange;
     calculator.reverseSign();
-  } else if (e.shiftKey && e.code === 'Digit8') {
-    key = document.querySelector('.key.Mult');
+  } else if (e.shiftKey && e.code === "Digit8") {
+    key = document.querySelector(".key.Mult");
     calculator.addOperation(key.innerText);
-  } else if (e.ctrlKey && e.code === 'KeyA') {
+  } else if (e.ctrlKey && e.code === "KeyA") {
     e.preventDefault();
     key = constants.allClear;
     calculator.clearAll();
-  } else if (e.shiftKey && e.code === 'Digit5') {
+  } else if (e.shiftKey && e.code === "Digit5") {
     key = constants.percentage;
     calculator.addSymbol(constants.percentage.innerText);
   } else {
     key = document.querySelector(`.key.${e.code}`);
     switch (e.code) {
-      case 'Backspace':
+      case "Backspace":
         calculator.cancelEntry();
         break;
-      case 'Equal':
+      case "Equal":
         calculator.equals();
         break;
-      case 'Slash':
+      case "Slash":
         calculator.addOperation(key.innerText);
         break;
-      case 'Minus':
+      case "Minus":
         calculator.addOperation(key.innerText);
         break;
-      case 'ShiftLeft':
+      case "ShiftLeft":
         return;
-      case 'ShiftRight':
+      case "ShiftRight":
         return;
       default:
         calculator.addSymbol(e.key);
         break;
     }
   }
-  key.classList.add('selected');
+  key.classList.add("selected");
   calculator.updateScreen();
 });
 
 // Calculator functionality
 
-constants.keys.forEach((key) => key.addEventListener('transitionend', (e) => e.target.classList.remove('selected')));
+constants.keys.forEach((key) =>
+  key.addEventListener("transitionend", (e) =>
+    e.target.classList.remove("selected")
+  )
+);
 
 constants.numbers.forEach((number) => {
-  number.addEventListener('click', () => {
+  number.addEventListener("click", () => {
     calculator.addSymbol(number.innerText);
     calculator.updateScreen();
   });
 });
 
 constants.operations.forEach((operation) => {
-  operation.addEventListener('click', () => {
+  operation.addEventListener("click", () => {
     calculator.addOperation(operation.innerText);
     calculator.updateScreen();
   });
 });
 
-constants.allClear.addEventListener('click', () => {
+constants.allClear.addEventListener("click", () => {
   calculator.clearAll();
   calculator.updateScreen();
 });
 
-constants.clearEntry.addEventListener('click', () => {
+constants.clearEntry.addEventListener("click", () => {
   calculator.cancelEntry();
   calculator.updateScreen();
 });
 
-constants.signChange.addEventListener('click', () => {
+constants.signChange.addEventListener("click", () => {
   calculator.reverseSign();
   calculator.updateScreen();
 });
 
-constants.equals.addEventListener('click', () => {
+constants.equals.addEventListener("click", () => {
   calculator.equals();
   calculator.updateScreen();
 });
 
-constants.percentage.addEventListener('click', () => {
+constants.percentage.addEventListener("click", () => {
   calculator.addSymbol(constants.percentage.innerText);
   calculator.updateScreen();
 });
 
 // Dark theme
-constants.themeSwitcher.addEventListener('click', () => {
-  constants.calculatorWrapper.classList.toggle('calculator-wrapper_dark');
-  constants.currentNumber.classList.toggle('current-calculation_dark');
-  constants.themeIcon.classList.toggle('icon_light-theme');
-  constants.themeIcon.classList.toggle('icon_dark-theme');
+constants.themeSwitcher.addEventListener("click", () => {
+  constants.calculatorWrapper.classList.toggle("calculator-wrapper_dark");
+  constants.currentNumber.classList.toggle("current-calculation_dark");
+  constants.themeIcon.classList.toggle("icon_light-theme");
+  constants.themeIcon.classList.toggle("icon_dark-theme");
 });
