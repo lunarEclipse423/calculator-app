@@ -2,6 +2,8 @@
 
 Простой калькулятор, созданный с использованием HTML, SCSS и JavaScript.
 
+![Calculator App](https://user-images.githubusercontent.com/61159646/190432486-4ef2ecc9-7811-42a3-bf66-ef63ce055e73.png)
+
 ## Функционал приложения
 
 - Сложение, вычитание, деление, умножение нескольких чисел
@@ -38,4 +40,4 @@
 ## Дополнительно
 
 [Дизайн калькулятора (figma)](https://www.figma.com/community/file/1138972240395739631)  
-[Деплой](https://lunareclipse423.github.io/calculator-app/https://lunareclipse423.github.io/calculator-app/)  
+[Демо](https://lunareclipse423.github.io/calculator-app/https://lunareclipse423.github.io/calculator-app/)  
