@@ -3,6 +3,8 @@ import Calculator from './js/Calculator.js';
 
 const calculator = new Calculator(constants.previousOperandText, constants.currentOperandText);
 
+// Keyboard support
+
 window.addEventListener('keydown', e => {
     let key;
     if (e.shiftKey && e.code === 'Equal') {
@@ -48,6 +50,8 @@ window.addEventListener('keydown', e => {
     key.classList.add('selected');
     calculator.updateScreen();
 });
+
+// Calculator functionality
 
 constants.keys.forEach(key =>
     key.addEventListener('transitionend', e => e.target.classList.remove('selected'))
