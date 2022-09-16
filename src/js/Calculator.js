@@ -1,6 +1,6 @@
 import Stack from "./Stack.js";
 
-const OperationsPriority = {
+const OPERATIONS_PRIORITY = {
   "+": 1,
   "-": 1,
   "×": 2,
@@ -74,12 +74,12 @@ export default class Calculator {
       let current = parseFloat(this.#currentNum);
       const percentageCount = this.#currentNum.replace(/[^%]/g, "").length;
 
-      if (OperationsPriority[this.#stackOperations.peek()] === 1) {
+      if (OPERATIONS_PRIORITY[this.#stackOperations.peek()] === 1) {
         const previous = this.#stackNumbers.peek();
         for (let i = 0; i < percentageCount; i += 1) {
           current = (current * previous) / 100;
         }
-      } else if (OperationsPriority[this.#stackOperations.peek()] === 2) {
+      } else if (OPERATIONS_PRIORITY[this.#stackOperations.peek()] === 2) {
         for (let i = 0; i < percentageCount; i += 1) {
           current /= 100;
         }
@@ -142,15 +142,15 @@ export default class Calculator {
 
     if (this.#stackOperations.length() !== 0 && !this.#isDivisionByZero) {
       if (
-        OperationsPriority[operation] > OperationsPriority[this.#stackOperations.peek()]
+        OPERATIONS_PRIORITY[operation] > OPERATIONS_PRIORITY[this.#stackOperations.peek()]
       ) {
         this.#stackOperations.push(operation);
       } else {
         while (
-          (OperationsPriority[operation] <
-            OperationsPriority[this.#stackOperations.peek()] ||
-            OperationsPriority[operation] ===
-              OperationsPriority[this.#stackOperations.peek()]) &&
+          (OPERATIONS_PRIORITY[operation] <
+            OPERATIONS_PRIORITY[this.#stackOperations.peek()] ||
+            OPERATIONS_PRIORITY[operation] ===
+              OPERATIONS_PRIORITY[this.#stackOperations.peek()]) &&
           !this.#isDivisionByZero
         ) {
           this.performOperation();
